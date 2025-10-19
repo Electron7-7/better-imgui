@@ -739,6 +739,8 @@ namespace ImGui
     // Widgets: Color Editor/Picker (tip: the ColorEdit* functions have a little color square that can be left-clicked to open a picker, and right-clicked to open an option menu.)
     // - Note that in C++ a 'float v[X]' function argument is the _same_ as 'float* v', the array syntax is just a way to document the number of elements that are expected to be accessible.
     // - You can pass the address of a first float element out of a contiguous structure, e.g. &myvector.x
+    IMGUI_API bool          ColorEditGLMv3(const char* label, glm::vec3* col, ImGuiColorEditFlags flags = 0);
+    IMGUI_API bool          ColorEditGLMv4(const char* label, glm::vec4* col, ImGuiColorEditFlags flags = 0);
     IMGUI_API bool          ColorEdit3(const char* label, float col[3], ImGuiColorEditFlags flags = 0);
     IMGUI_API bool          ColorEdit4(const char* label, float col[4], ImGuiColorEditFlags flags = 0);
     IMGUI_API bool          ColorPicker3(const char* label, float col[3], ImGuiColorEditFlags flags = 0);

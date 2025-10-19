@@ -5752,6 +5752,33 @@ void ImGui::DebugNodeInputTextState(ImGuiInputTextState* state)
 // - ColorPickerOptionsPopup() [Internal]
 //-------------------------------------------------------------------------
 
+bool ImGui::ColorEditGLMv3(const char* label, glm::vec3* col, ImGuiColorEditFlags flags)
+{
+    float l_Scalars[3] = { col->r, col->g, col->b };
+    if(ColorEdit4(label, l_Scalars, flags | ImGuiColorEditFlags_NoAlpha))
+    {
+        col->r = l_Scalars[0];
+        col->g = l_Scalars[1];
+        col->b = l_Scalars[2];
+        return true;
+    }
+    return false;
+}
+
+bool ImGui::ColorEditGLMv4(const char* label, glm::vec4* col, ImGuiColorEditFlags flags)
+{
+    float l_Scalars[4] = { col->r, col->g, col->b, col->a };
+    if(ColorEdit4(label, l_Scalars, flags))
+    {
+        col->r = l_Scalars[0];
+        col->g = l_Scalars[1];
+        col->b = l_Scalars[2];
+        col->a = l_Scalars[3];
+        return true;
+    }
+    return false;
+}
+
 bool ImGui::ColorEdit3(const char* label, float col[3], ImGuiColorEditFlags flags)
 {
     return ColorEdit4(label, col, flags | ImGuiColorEditFlags_NoAlpha);
