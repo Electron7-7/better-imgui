@@ -3814,6 +3814,31 @@ void ImGui::SetNextItemRefVal(ImGuiDataType data_type, void* p_data)
     memcpy(&g.NextItemData.RefVal, p_data, DataTypeGetInfo(data_type)->Size);
 }
 
+bool ImGui::InputGLMv2(const char* label, glm::vec2* v, float step, float step_fast, const char* format, ImGuiInputTextFlags flags)
+{
+    float l_Scalars[2] = {v->x, v->y};
+    if(InputScalarN(label, ImGuiDataType_Float, (void*)l_Scalars, 2, (void*)(step > 0.0f ? &step : NULL), (void*)(step_fast > 0.0f ? &step_fast : NULL), format, flags))
+    {
+        v->x = l_Scalars[0];
+        v->y = l_Scalars[1];
+        return true;
+    }
+    return false;
+}
+
+bool ImGui::InputGLMv3(const char* label, glm::vec3* v, float step, float step_fast, const char* format, ImGuiInputTextFlags flags)
+{
+    float l_Scalars[3] = {v->x, v->y, v->z};
+    if(InputScalarN(label, ImGuiDataType_Float, (void*)l_Scalars, 3, (void*)(step > 0.0f ? &step : NULL), (void*)(step_fast > 0.0f ? &step_fast : NULL), format, flags))
+    {
+        v->x = l_Scalars[0];
+        v->y = l_Scalars[1];
+        v->z = l_Scalars[2];
+        return true;
+    }
+    return false;
+}
+
 // Note: p_data, p_step, p_step_fast are _pointers_ to a memory address holding the data. For an Input widget, p_step and p_step_fast are optional.
 // Read code of e.g. InputFloat(), InputInt() etc. or examples in 'Demo->Widgets->Data Types' to understand how to use this function directly.
 bool ImGui::InputScalar(const char* label, ImGuiDataType data_type, void* p_data, const void* p_step, const void* p_step_fast, const char* format, ImGuiInputTextFlags flags)
